@@ -2,14 +2,14 @@
 
 namespace App\Http\Resources;
 
-use App\Models\User;
+use App\Models\ImfeelingluckyHistory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin User
+ * @mixin ImfeelingluckyHistory
  */
-class UserResource extends JsonResource
+class ImfeelingluckyHistoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,9 +19,7 @@ class UserResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'userLink' => $this->whenLoaded('userLink', function () {
-                return UserLinkResource::make($this->userLink)->jsonSerialize();
-            }),
+            'result' => $this->result,
         ];
     }
 }

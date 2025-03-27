@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\User;
 
+use App\Models\ImfeelingluckyHistory;
 use App\Models\UserLink;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -33,6 +34,31 @@ class UserLinkTest extends TestCase
         $this->assertSoftDeleted('user_links', [
             'link' => $this->userLink->link,
         ]);
+    }
+
+    public function test_imfeelinglucky(): void
+    {
+        $response = $this->post(route('userLink.imfeelinglucky', [
+            'userLink' => $this->userLink,
+        ]))
+            ->assertSuccessful();
+
+        $this->assertDatabaseHas('imfeelinglucky_histories', [
+            'user_id' => $this->userLink->user->id,
+        ]);
+
+        /** @var ImfeelingluckyHistory $result */
+        $result = $this->userLink->user->imfeelingLuckyHistories()->first();
+
+        if ($result->result > 0) {
+            $response->assertSeeText('Win.');
+            $response->assertDontSeeText('Lose.');
+            $response->assertSeeText("Sum: {$result->result}");
+            return;
+        }
+        $response->assertSeeText('Lose.');
+        $response->assertDontSeeText('Win.');
+        $response->assertSeeText("Sum: 0");
     }
 
     protected function setUp(): void

@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 class LinkService implements LinkServiceContract
 {
     public function __construct(
-        protected UserLinkRepository $userLinkRepository
+        readonly protected UserLinkRepository $userLinkRepository
     )
     {
     }

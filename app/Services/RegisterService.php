@@ -13,8 +13,8 @@ use App\Services\Contracts\RegisterService as RegisterServiceContract;
 class RegisterService implements RegisterServiceContract
 {
     public function __construct(
-        protected readonly LinkService $linkService,
-        protected readonly UserRepository $userRepository,
+        readonly protected LinkService $linkService,
+        readonly protected UserRepository $userRepository,
     )
     {
     }

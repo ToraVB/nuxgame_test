@@ -18,9 +18,15 @@ class ImfeelingluckyHistory extends Model
 {
     use HasFactory;
 
+    public const UPDATED_AT = null;
+
     protected $fillable = [
         'result',
         'user_id',
+    ];
+
+    protected $casts = [
+        'result' => 'float',
     ];
 
     public function user(): BelongsTo

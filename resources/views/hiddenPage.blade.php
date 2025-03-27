@@ -27,11 +27,17 @@
         </button>
     </form>
     <br>
-    <form>
+    <form action="{{route('userLink.imfeelinglucky', ['userLink' => $userLink['link']])}}" method="post">
+        @csrf
         <button type="submit">
             Imfeelinglucky
         </button>
     </form>
+    @if(!empty($imfeelinglucky))
+        <br>
+        Result: {{ $imfeelinglucky['result'] > 0 ? 'Win' : 'Lose' }}. Sum: {{ $imfeelinglucky['result'] }}
+        <br>
+    @endif
     <br>
     <form>
         <button type="submit">

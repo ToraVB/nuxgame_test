@@ -27,6 +27,11 @@ class UserLink extends Model
         'expires_at' => 'datetime',
     ];
 
+    public function getRouteKeyName(): string
+    {
+        return 'link';
+    }
+
     protected $fillable = [
         'link',
         'user_id',
@@ -41,5 +46,15 @@ class UserLink extends Model
     public static function scopeByLink($query, string $link)
     {
         return $query->where('link', $link);
+    }
+
+    public function isExpired(): bool
+    {
+        return $this->expires_at <= Carbon::now();
+    }
+
+    public function isDeleted(): bool
+    {
+        return (bool) $this->deleted_at;
     }
 }

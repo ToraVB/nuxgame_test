@@ -32,7 +32,7 @@
         </form>
 
         @if(!empty($userLink))
-            Your link: {{ route('userLink', ['userLink' => $userLink['link']]) }}
+            Your link: {{ route('userLink.index', ['userLink' => $userLink['link']]) }}
         @endif
     </body>
 </html>

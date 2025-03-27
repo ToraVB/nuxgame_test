@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserLinkController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +24,12 @@ Route::post('register', [
     'register',
 ])->name('register');
 
-Route::get('{userLink}', function (){})->name('userLink');
+Route::middleware('availableLink')
+    ->prefix('{userLink}')
+    ->as('userLink.')
+    ->group(function () {
+        Route::get('', [
+            UserLinkController::class,
+            'index',
+        ])->name('index');
+    });

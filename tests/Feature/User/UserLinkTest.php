@@ -63,7 +63,7 @@ class UserLinkTest extends TestCase
 
     public function test_history(): void
     {
-        $history = ImfeelingluckyHistory::factory(3)->create();
+        $history = ImfeelingluckyHistory::factory(3)->for($this->userLink->user)->create();
 
         $this->assertDatabaseCount('imfeelinglucky_histories', 3);
 

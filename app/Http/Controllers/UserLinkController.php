@@ -44,7 +44,7 @@ class UserLinkController extends Controller
         ]);
     }
 
-    public function history(UserLink $userLink, ImfeelingluckyHistoryRepository $historyRepository)
+    public function history(UserLink $userLink, ImfeelingluckyHistoryRepository $historyRepository): Factory|Application|View|\Illuminate\Contracts\Foundation\Application
     {
         return view('hiddenPage', [
             'userLink' => UserLinkResource::make($userLink)->jsonSerialize(),

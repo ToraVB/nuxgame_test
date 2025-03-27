@@ -17,6 +17,7 @@ use Illuminate\Support\Carbon;
  * @property-read Carbon $updated_at
  * @property Carbon $expires_at
  * @property-read Carbon $deleted_at
+ * @method static byLink(string $link)
  */
 class UserLink extends Model
 {
@@ -28,10 +29,17 @@ class UserLink extends Model
 
     protected $fillable = [
         'link',
+        'user_id',
+        'expires_at',
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public static function scopeByLink($query, string $link)
+    {
+        return $query->where('link', $link);
     }
 }

@@ -20,6 +20,7 @@ class ImfeelingluckyHistory extends Model
 
     protected $fillable = [
         'result',
+        'user_id',
     ];
 
     public function user(): BelongsTo

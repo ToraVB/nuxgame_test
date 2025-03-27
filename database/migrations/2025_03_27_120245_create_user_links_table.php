@@ -11,11 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('user_links', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('phonenumber')->unique();
+            $table->foreignId('user_id')->constrained('users');
+            $table->string('link', 16)->unique();
             $table->timestamps();
+            $table->timestamp('expires_at')->nullable();
+            $table->softDeletes();
+
+            $table->index(['user_id']);
+            $table->index(['link']);
         });
     }
 
@@ -24,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('user_links');
     }
 };

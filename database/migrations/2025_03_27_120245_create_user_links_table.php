@@ -19,7 +19,6 @@ return new class extends Migration
             $table->timestamp('expires_at')->nullable();
             $table->softDeletes();
 
-            $table->index(['user_id']);
             $table->index(['link']);
         });
     }

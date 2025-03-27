@@ -30,6 +30,22 @@ Route::middleware('availableLink')
     ->group(function () {
         Route::get('', [
             UserLinkController::class,
-            'index',
-        ])->name('index');
+            'show',
+        ])->name('show');
+        Route::post('generate-link', [
+            UserLinkController::class,
+            'generateLink',
+        ])->name('generateLink');
+        Route::post('deactivate-link', [
+            UserLinkController::class,
+            'deactivateLink',
+        ])->name('deactivateLink');
+        Route::post('imfeelinglucky', [
+            UserLinkController::class,
+            'imfeelinglucky',
+        ])->name('imfeelinglucky');
+        Route::post('history', [
+            UserLinkController::class,
+            'history',
+        ])->name('history');
     });

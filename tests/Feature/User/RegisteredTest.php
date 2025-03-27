@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\User;
 
+use App\Models\User;
 use App\Repositories\Contracts\UserRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -29,7 +30,7 @@ class RegisteredTest extends TestCase
             'phonenumber' => $phonenumber,
         ]);
 
-        $this->post('/register', [
+        $this->post(route('register'), [
             'username' => $username,
             'phonenumber' => $phonenumber,
         ])
@@ -54,16 +55,16 @@ class RegisteredTest extends TestCase
      */
     public function test_registered(string $username, string $phonenumber): void
     {
-        $user = $this->userRepository->create([
+        $user = User::factory([
             'username' => $username,
             'phonenumber' => $phonenumber,
-        ]);
+        ])->create();
 
         $this->assertDatabaseMissing('user_links', [
             'user_id' => $user->id,
         ]);
 
-        $this->post('/register', [
+        $this->post(route('register'), [
             'username' => $username,
             'phonenumber' => $phonenumber,
         ])

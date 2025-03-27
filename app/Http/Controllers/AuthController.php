@@ -13,6 +13,8 @@ class AuthController extends Controller
 {
     public function register(RegisterRequest $request, RegisterService $registerService): Factory|Application|View|\Illuminate\Contracts\Foundation\Application
     {
-        return view('welcome', UserResource::make($registerService->register($request->getDto()))->jsonSerialize());
+        return view('welcome', [
+            'user' => UserResource::make($registerService->register($request->getDto()))->jsonSerialize(),
+        ]);
     }
 }

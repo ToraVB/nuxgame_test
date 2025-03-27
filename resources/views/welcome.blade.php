@@ -31,8 +31,8 @@
             </button>
         </form>
 
-        @if(!empty($userLink))
-            Your link: {{ route('userLink.index', ['userLink' => $userLink['link']]) }}
+        @if(!empty($user['userLink']))
+            @include('partials.userLink', ['userLink' => $user['userLink']])
         @endif
     </body>
 </html>

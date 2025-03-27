@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->decimal('result')->default(0);
             $table->timestamp('created_at')->nullable();
+
+            $table->index(['user_id']);
         });
     }
 

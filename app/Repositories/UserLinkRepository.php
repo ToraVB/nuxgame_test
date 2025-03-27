@@ -16,4 +16,9 @@ class UserLinkRepository implements UserLinkRepositoryContract
     {
         return UserLink::query()->create($data);
     }
+
+    public function delete(UserLink $userLink): void
+    {
+        $userLink->delete();
+    }
 }

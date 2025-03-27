@@ -39,4 +39,9 @@ class LinkService implements LinkServiceContract
 
         return $string;
     }
+
+    public function deactivateLink(UserLink $userLink): void
+    {
+        $this->userLinkRepository->delete($userLink);
+    }
 }

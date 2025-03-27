@@ -8,4 +8,6 @@ use App\Models\UserLink;
 interface LinkService
 {
     public function generateLink(User $user): UserLink;
+
+    public function deactivateLink(UserLink $userLink): void;
 }

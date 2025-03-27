@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ImfeelingluckyHistoryResource;
 use App\Http\Resources\UserLinkResource;
 use App\Models\UserLink;
+use App\Repositories\Contracts\ImfeelingluckyHistoryRepository;
 use App\Services\Contracts\ImfeelingluckyService;
 use App\Services\Contracts\LinkService;
 use Illuminate\Contracts\View\Factory;
@@ -43,8 +44,11 @@ class UserLinkController extends Controller
         ]);
     }
 
-    public function history(UserLink $userLink)
+    public function history(UserLink $userLink, ImfeelingluckyHistoryRepository $historyRepository)
     {
-
+        return view('hiddenPage', [
+            'userLink' => UserLinkResource::make($userLink)->jsonSerialize(),
+            'imfeelingluckyHistory' => ImfeelingluckyHistoryResource::collection($historyRepository->latestForUser($userLink->user))->jsonSerialize(),
+        ]);
     }
 }

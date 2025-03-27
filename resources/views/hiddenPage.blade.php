@@ -39,10 +39,19 @@
         <br>
     @endif
     <br>
-    <form>
+    <form action="{{route('userLink.history', ['userLink' => $userLink['link']])}}" method="get">
         <button type="submit">
             History
         </button>
     </form>
+    @if(!empty($imfeelingluckyHistory))
+        <br>
+        Your latest results:
+        @foreach($imfeelingluckyHistory as $item)
+            <br>
+            Sum: {{ $item['result'] }}
+            <br>
+        @endforeach
+    @endif
 </body>
 </html>

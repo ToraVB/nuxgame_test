@@ -44,7 +44,7 @@ Route::middleware('availableLink')
             UserLinkController::class,
             'imfeelinglucky',
         ])->name('imfeelinglucky');
-        Route::post('history', [
+        Route::get('history', [
             UserLinkController::class,
             'history',
         ])->name('history');

@@ -61,6 +61,23 @@ class UserLinkTest extends TestCase
         $response->assertSeeText("Sum: 0");
     }
 
+    public function test_history(): void
+    {
+        $history = ImfeelingluckyHistory::factory(3)->create();
+
+        $this->assertDatabaseCount('imfeelinglucky_histories', 3);
+
+        $response = $this->get(route('userLink.history', [
+            'userLink' => $this->userLink,
+        ]))
+            ->assertSuccessful()
+            ->assertSeeText('Your latest results:');
+
+        foreach ($history as $historyItem) {
+            $response->assertSeeText("Sum: {$historyItem->result}");
+        }
+    }
+
     protected function setUp(): void
     {
         parent::setUp();

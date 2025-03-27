@@ -12,7 +12,7 @@ class ImfeelingluckyHistoryRepository implements ImfeelingluckyHistoryRepository
 
     public function latestForUser(User $user): Collection
     {
-        return ImfeelingluckyHistory::query()->latest()->take(3)->orderByDesc('created_at')->get();
+        return ImfeelingluckyHistory::query()->latest()->take(3)->orderByDesc('id')->get();
     }
 
     public function create(array $data): ImfeelingluckyHistory

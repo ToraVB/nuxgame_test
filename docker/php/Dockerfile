@@ -16,8 +16,6 @@ RUN addgroup --gid ${GROUP_ID} laravel && \
 
 WORKDIR /var/www
 
-# Copy application files
 COPY --chown=${USER_ID}:${GROUP_ID} . .
 
-# Use the laravel user by default
 USER laravel

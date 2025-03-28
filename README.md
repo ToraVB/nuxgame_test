@@ -6,3 +6,4 @@
 ```bash
   docker exec laravel_app php artisan migrate
 ```
+### 3. go to http://localhost
